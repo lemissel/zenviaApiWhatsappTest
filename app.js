@@ -116,32 +116,28 @@ const url = `https://whatsapp-zenvia-test.herokuapp.com:${port}/`;
 
 
 
-const zenvia = require('@zenvia/sdk');
+const { Client, WebhookController } = require('@zenvia/sdk');
 
-const client = new zenvia.Client(token);
-
-const whatsapp = client.getChannel('whatsapp');
-
-const content = new zenvia.TextContent("Vim da API")
-
-whatsapp.sendMessage('5551985007106','bedecked-alley', content)
-.then(console.log)
-.catch(console.error);
-
-whatsapp.sendMessage('bedecked-alley', '5551985007106', content)
-.then(console.log)
-.catch(console.error);
-
+const client = new Client(token);
 
 const webhook = new WebhookController({
-    messageEventHandler: (messageEvent) => {
-      console.log('Message event:', messageEvent);
-    },
-    messageStatusEventHandler: (messageStatusEvent) => {
-      console.log('Message status event:', messageStatusEvent);
-    },
-    client,
-    url,
-    channel: 'whatsapp',
-  });
-  webhook.init();
+  messageEventHandler: (messageEvent) => {
+    console.log('Message event:', messageEvent);
+  },
+  messageStatusEventHandler: (messageStatusEvent) => {
+    console.log('Message status event:', messageStatusEvent);
+  },
+  client,
+  url,
+  channel: 'whatsapp',
+});
+
+webhook.on('listening', () => {
+  console.log('Webhook is listening');
+});
+
+webhook.on('error', (error) => {
+  console.error('Error:', error);
+});
+
+webhook.init();
