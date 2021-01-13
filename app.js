@@ -1,6 +1,6 @@
-const port = 3000;
+// const port = 3000;
 const token = 'lOTKtIjuPG1Qno6ZX5DiqzSbgtKyx_hmsWTo';
-const url = `https://whatsapp-zenvia-test.herokuapp.com:${port}/`;
+const url = `https://whatsapp-zenvia-test.herokuapp.com/`;
 // Comentar a linha acima e descomentar o trecho abaixo para usar ngrok.
 
 // const ngrok = require( 'ngrok' );
