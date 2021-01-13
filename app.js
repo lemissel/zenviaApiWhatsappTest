@@ -127,6 +127,7 @@ const webhook = new WebhookController({
   messageStatusEventHandler: (messageStatusEvent) => {
     console.log('Message status event:', messageStatusEvent);
   },
+  port,
   client,
   url,
   channel: 'whatsapp',
