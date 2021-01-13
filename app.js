@@ -40,6 +40,8 @@ async function main( url , token ) {
     // A parte mais importa da nossa aplicação. Aqui que as mensagens são tratadas.
     messageEventHandler: ( messageEvent ) => {
 
+        console.log(messageEvent)
+
       const phone = messageEvent.message.from;
       const senderId = messageEvent.message.to;
       let firstName;
