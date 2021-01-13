@@ -127,3 +127,31 @@ const content = new zenvia.TextContent("Vim da API")
 whatsapp.sendMessage('5551985007106','bedecked-alley', content)
 .then(console.log)
 .catch(console.error);
+
+whatsapp.sendMessage('bedecked-alley', '5551985007106', content)
+.then(console.log)
+.catch(console.error);
+
+
+const subscription = new MessageSubscription({
+  url
+},
+{
+  channel: 'whatsapp'
+});
+const response = await client.createSubscription(subscription);
+
+console.log(response)
+
+const webhook = new WebhookController({
+    messageEventHandler: (messageEvent) => {
+      console.log('Message event:', messageEvent);
+    },
+    messageStatusEventHandler: (messageStatusEvent) => {
+      console.log('Message status event:', messageStatusEvent);
+    },
+    client,
+    url,
+    channel: 'whatsapp',
+  });
+  webhook.init();
